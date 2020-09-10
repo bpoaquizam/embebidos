@@ -71,10 +71,10 @@ function LED1_Off(){
 		document.getElementById("sensor").innerHTML=SValue[0];
 		if(SValue[1]=="1"){
 			document.getElementById("estado").src="/static/images/led_on.png";
-			document.getElementById("estado").innerHTML="ledon";
+			//document.getElementById("estado").innerHTML="ledon";
 		}else if(SValue[1]=="0"){
 			document.getElementById("estado").src="/static/images/led_off.png";
-			document.getElementById("estado").innerHTML="ledoff";
+			//document.getElementById("estado").innerHTML="ledoff";
 		}
   }
  
