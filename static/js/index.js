@@ -1,22 +1,24 @@
 //https://www.eclipse.org/paho/clients/js/
 
 function LED1_On() {
-
+	document.getElementById("estado").innerHTML=valor;
 	message=new Paho.MQTT.Message("1");
 	message.destinationName="bpoaquizam@gmail.com/Test1";
 	client.send(message);
-	alert("led on");
+	alert("Historial de sensor");
 	console.log("led on");
+	//document.getElementById("estado").innerHTML="led on";
   
 }
-function LED1_Off(){	
-
-	message=new Paho.MQTT.Message("0");
-	message.destinationName="bpoaquizam@gmail.com/Test1";
-	client.send(message);
-	alert("led off");
-	console.log("led off");
-}
+// function LED1_Off(){	
+	// document.getElementById("estado").innerHTML=valor;
+	// message=new Paho.MQTT.Message("0");
+	// message.destinationName="bpoaquizam@gmail.com/Test1";
+	// client.send(message);
+	// alert("led off");
+	// console.log("led off");
+	// document.getElementById("estado").innerHTML="led off";
+// }
 
 
 // Create a client instance
@@ -64,13 +66,19 @@ function LED1_Off(){
 
   // called when a message arrives
   function onMessageArrived(message) {
+	 var separacion=",";
 	  var SValue="0";
 		console.log("onMessageArrived:"+message.payloadString);
+		SValue=message.payloadString.split(separacion);
 		document.getElementById("sensor").innerHTML=SValue[0];
 		if(SValue[1]=="1"){
 			document.getElementById("estado").innerHTML="ledon";
 		}else if(SValue[1]=="0"){
 			document.getElementById("estado").innerHTML="ledoff";
 		}
+		valor=SValue-1;
+		
+		//document.getElementById("estado").innerHTML=valor;
+		
   }
  
