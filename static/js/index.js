@@ -1,20 +1,22 @@
 //https://www.eclipse.org/paho/clients/js/
 
 function LED1_On() {
+	document.getElementById("estado").src="/static/images/led_on.png";
+	message=new Paho.MQTT.Message("1");
+	message.destinationName="bpoaquizam@gmail.com/Test1";
+	client.send(message);
 	alert("led on");
 	console.log("led on");
-	document.getElementById("sensor").innerHTML="led on";
   
 }
 function LED1_Off(){	
+	document.getElementById("estado").src="/static/images/led_off.png";
+	message=new Paho.MQTT.Message("1");
+	message.destinationName="bpoaquizam@gmail.com/Test1";
+	client.send(message);
 	alert("led off");
 	console.log("led off");
-	document.getElementById("sensor").innerHTML="led off";
 }
-
-
-
-
 
 
 // Create a client instance
@@ -27,8 +29,8 @@ function LED1_Off(){
   client.onMessageArrived = onMessageArrived;
   var options = {
    useSSL: false,
-    userName: "lfrenteriax@hotmail.com",
-    password: "lfrenteriax",
+    userName: "bpoaquizam@gmail.com",
+    password: "bpoaquizam96",
     onSuccess:onConnect,
     onFailure:doFail
   }
@@ -39,11 +41,11 @@ function LED1_Off(){
   // called when the client connects
   function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
-    console.log("Conectado...");
+    console.log("Conectado_");
 	
-    client.subscribe("lfrenteriax@hotmail.com/test");
+    client.subscribe("bpoaquizam@gmail/Test");
     message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "lfrenteriax@hotmail.com/test1";
+    message.destinationName = "bpoaquizam@gmail/Test1";
     client.send(message);
 	
   }
@@ -62,6 +64,15 @@ function LED1_Off(){
 
   // called when a message arrives
   function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
+	  var separacion=",";
+	  var SValue="0";
+		console.log("onMessageArrived:"+message.payloadString);
+		SValue=message.payloadString.split(separacion);
+		document.getElementById("sensor".innerHTML=SValue[0];
+		if(SValue[1]=="1"){
+			document.getElementById("estado").src="/static/images/led_on.png";
+		}else if(SValue[1]=="0"){
+			document.getElementById("estado").src="/static/images/led_off.png";
+		}
   }
-  
+ 
