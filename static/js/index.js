@@ -11,7 +11,7 @@ function LED1_On() {
 }
 function LED1_Off(){	
 	document.getElementById("estado").src="/static/images/led_off.png";
-	message=new Paho.MQTT.Message("1");
+	message=new Paho.MQTT.Message("0");
 	message.destinationName="bpoaquizam@gmail.com/Test1";
 	client.send(message);
 	alert("led off");
