@@ -68,7 +68,7 @@ function LED1_Off(){
 	  var SValue="0";
 		console.log("onMessageArrived:"+message.payloadString);
 		SValue=message.payloadString.split(separacion);
-		document.getElementById("sensor").innerHTML=SValue[0];
+		document.getElementById("sensor".innerHTML=SValue[0];
 		if(SValue[1]=="1"){
 			document.getElementById("estado").src="/static/images/led_on.png";
 		}else if(SValue[1]=="0"){
